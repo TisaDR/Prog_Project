@@ -1,0 +1,351 @@
+/* Enquiry Section Layout */
+.nav-title {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: white;
+    font-family: 'Pacifico', cursive; /* Apply curvy font */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.shop a{
+    text-decoration: none;
+    color: white;
+}
+
+.nav-title:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    color: #C8E6C9; /* Change color on hover */
+}
+
+/* Navbar */
+.navbar {
+    background: linear-gradient(45deg, #1B5E20, #4CAF50);
+    height: 80px; /* Increased height */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+}
+
+.search-box {
+    flex: 1;
+}
+
+.search-box input {
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+    max-width: 300px;
+}
+
+.nav-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-links li {
+    position: relative;
+    padding: 14px 20px;
+    cursor: pointer;
+    color: white;
+}
+
+.nav-links li:hover .dropdown {
+    display: block;
+}
+
+.home a {
+    text-decoration: none;
+    color: white;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    background-color: #388e3c;
+    top: 100%;
+    left: 0;
+    min-width: 150px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+.dropdown a {
+    color: white;
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+}
+
+.dropdown a:hover {
+    background-color: #4caf50;
+}
+
+.enquiry-section {
+    display: flex;
+    align-items: stretch; /* Ensure both children stretch to the same height */
+    justify-content: space-between;
+    padding: 40px;
+    background: linear-gradient(45deg, #5CC89B, #2E7D32);
+    color: white;
+    border-radius: 15px;
+    margin: 40px auto;
+    max-width: 1200px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Enquiry Form on the Left */
+.enquiry-form {
+    flex: 1;
+    padding-right: 40px; /* Add spacing between form and image */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center the form vertically */
+}
+
+.enquiry-form h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, #66bb6a, #2e7d32, #388e3c);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.enquiry-form p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    color: #C8E6C9;
+}
+
+/* Form Styling */
+.form {
+    max-width: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 1.1em;
+    margin-bottom: 8px;
+    color: #2E7D32;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: white;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.6);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+/* Submit Button */
+button[type="submit"] {
+    padding: 12px 25px;
+    background-color: #2E7D32;
+    color: white;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: #4CAF50;
+    transform: translateY(-3px);
+}
+
+/* Agriculture Icons */
+button[type="submit"]::before {
+    content: "🚜";
+    font-size: 1.2em;
+}
+
+.form-group label::before {
+    margin-right: 10px;
+}
+
+.form-group label[for="name"]::before {
+    content: "👤";
+}
+
+.form-group label[for="email"]::before {
+    content: "📧";
+}
+
+.form-group label[for="subject"]::before {
+    content: "🌾";
+}
+
+.form-group label[for="message"]::before {
+    content: "💬";
+}
+
+/* Image on the Right */
+.enquiry-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Ensure the image doesn't overflow */
+    border-radius: 10px; /* Match the form's border radius */
+}
+
+.enquiry-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the entire container */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+    background: linear-gradient(45deg, #1B5E20, #4CAF50) !important;
+    padding: 30px 20px; /* Reduced padding for smaller height */
+    color: white;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+    min-height: 150px; /* Reduced height */
+}
+
+.footer-socials a img {
+    width: 30px; /* Decrease the size of the logo */
+    height: 30px; /* Ensure the height is proportional */
+}
+
+.footer-container {
+    background: transparent !important;
+}
+
+
+.footer-links ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.footer-socials a {
+    margin: 0 15px;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.footer-socials a:hover {
+    color: #C8E6C9;
+}
+footer {
+    /* background-color: #333;
+    color: #fff;
+    padding: 25px 15px;
+    width: 100%;
+    margin-top: 30px; */
+    margin-top: 20px;
+    position: static;
+    align-items: s;
+    justify-content: flex-start;
+    background-color: #333;
+    
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+     /* Limit width for larger screens */
+    margin: 0 auto;    /* Center the footer content */
+}
+
+.footer-section {
+    width: 22%; /* Adjust width for better responsiveness */
+    min-width: 160px; /* Set a minimum width */
+    margin-bottom: 18px;
+}
+
+.footer-section h4 {
+    margin-bottom: 8px;
+    /* width: max-content;  Remove this line */
+    white-space: nowrap; /* Prevent heading from wrapping */
+}
+
+.footer-section p,
+.footer-section a {
+    color: #ddd;
+    text-decoration: none;
+    display: block; /* Make links and paragraphs stack nicely */
+    margin-bottom: 5px; /* Add spacing between items */
+}
+
+.footer-section a:hover {
+    color: #ff6f61;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 8px 0;
+    margin-top: 18px;
+    width: 100%; /* Ensure full width */
+}
+
+/* Default styles (for larger screens, like desktops) */
+body {
+    font-size: 16px;
+    background-color: #f0f0f0;
+  }
+  
+  /* For tablets or smaller screens (max-width: 768px) */
+  @media (max-width: 768px) {
+    body {
+      font-size: 14px;
+      background-color: #e0e0e0;
+    }
+  }
+  
+  /* For mobile screens (max-width: 480px) */
+  @media (max-width: 480px) {
+    body {
+      font-size: 12px;
+      background-color: #d0d0d0;
+    }
+  }
+  

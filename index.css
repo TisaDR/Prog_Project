@@ -1,0 +1,592 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    padding-top: 0; /* Remove space between navbar and hero */
+}
+.nav-title {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: white;
+    font-family: 'Pacifico', cursive; /* Apply curvy font */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav-title:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    color: #C8E6C9; /* Change color on hover */
+}
+
+/* Navbar */
+.navbar {
+    background: linear-gradient(45deg, #1B5E20, #4CAF50);
+    height: 80px; /* Increased height */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+}
+/* Default styles (for larger screens, like desktops) */
+body {
+    font-size: 16px;
+    background-color: #f0f0f0;
+  }
+  
+  /* For tablets or smaller screens (max-width: 768px) */
+  @media (max-width: 768px) {
+    body {
+      font-size: 14px;
+      background-color: #e0e0e0;
+    }
+  }
+  
+  /* For mobile screens (max-width: 480px) */
+  @media (max-width: 480px) {
+    body {
+      font-size: 12px;
+      background-color: #d0d0d0;
+    }
+  }
+  
+
+.search-box {
+    flex: 1;
+}
+
+.search-box input {
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+    max-width: 300px;
+}
+
+.nav-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-links li {
+    position: relative;
+    padding: 14px 20px;
+    cursor: pointer;
+    color: white;
+}
+
+.nav-links li:hover .dropdown {
+    display: block;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    background-color: #388e3c;
+    top: 100%;
+    left: 0;
+    min-width: 150px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+.dropdown a {
+    color: white;
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+}
+
+.dropdown a:hover {
+    background-color: #4caf50;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60vh;
+    background-color: #121212;
+    padding: 40px;
+    margin-top: 0; /* Remove space from the top */
+}
+
+.hero-text {
+    flex: 1;
+    font-size: 2em;
+    font-weight: bold;
+    max-width: 50%;
+    background: linear-gradient(45deg, #66bb6a, #2e7d32, #388e3c);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero-text p {
+    font-size: 1em;
+    color: #a5d6a7;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image img {
+    max-width: 90%;
+    height: auto;
+    border-radius: 10px;
+    max-height: 55vh;
+}
+
+/* Featured Products Section */
+.featured-products {
+    padding: 40px;
+    background: linear-gradient(45deg, #5CC89B, #2E7D32);
+    color: white;
+    text-align: center;
+}
+.featured-products h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.product-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.product-card {
+    background: white;
+    color: #333;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 250px;
+    max-width: 300px;
+}
+
+.product-card img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.product-card h3 {
+    margin-top: 10px;
+    font-size: 1.5em;
+}
+
+.product-card p {
+    font-size: 1.1em;
+    color: #666;
+}
+
+.product-card button {
+    padding: 10px 15px;
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.product-card button:hover {
+    background-color: #4caf50;
+}
+/* Why Choose Us Section */
+.why-choose-us {
+    padding: 40px;
+    background-color: #a5d6a7; /* Light green background */
+    text-align: center;
+}
+
+.why-choose-us h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.values {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.value {
+    margin: 0 20px;
+    text-align: center;
+}
+
+.value img {
+    width: 60px;
+    height: 60px;
+}
+
+.value p {
+    margin-top: 10px;
+    font-size: 1.2em;
+}
+
+/* Testimonials Section */
+/* Testimonials Section */
+.testimonials {
+    padding: 40px;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+.testimonials h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #2e7d32;
+}
+
+.testimonial-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.testimonial {
+    background-color: #388e3c; /* Green background */
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    position: relative;
+    max-width: 80%;
+    margin-left: 20px;
+}
+
+.testimonial p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.testimonial strong {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+
+/* Chat bubble arrows */
+.testimonial::before {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 20px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: #388e3c transparent transparent transparent;
+}
+
+/* Alternate chat bubbles for different users */
+.testimonial:nth-child(even) {
+    background-color: #4caf50; /* Different shade for alternate messages */
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.testimonial:nth-child(even)::before {
+    left: auto;
+    right: 20px;
+    border-color: #4caf50 transparent transparent transparent;
+}
+
+
+/* Seasonal Offers Section */
+.seasonal-offers {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px;
+    background: linear-gradient(45deg, #4caf50, #2e7d32);
+    color: white;
+    flex-wrap: wrap;
+}
+
+.seasonal-offers h2 {
+    font-size: 2.5em;
+    flex: 1;
+    white-space: nowrap;
+}
+
+.offer-list {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    flex: 2;
+    justify-content: center;
+}
+
+.offer-item {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-size: 1.2em;
+    text-align: center;
+    min-width: 180px;
+}
+
+/* Subscription Box Section */
+/* Subscription Section */
+.subscription-box {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    margin: 30px;
+   
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.subscription-box h2 {
+    font-size: 24px;
+    color: #333;
+}
+
+.subscription-box p {
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.subscription-box button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 4px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.subscription-box button:hover {
+    background-color: #218838;
+}
+
+#signup-form-container {
+    margin-top: 20px;
+}
+
+#signup-form input {
+    padding: 10px;
+    margin-right: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+#signup-form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#signup-form button:hover {
+    background-color: #218838;
+}
+
+#timer {
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+
+/* Newsletter Section */
+/* Stay Updated Section */
+.newsletter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 60px;
+}
+
+/* Left Side: Heading + Paragraph */
+.newsletter .text {
+    flex: 1;
+    text-align: left;
+}
+
+/* Ensuring paragraph appears directly below the heading */
+.newsletter h2 {
+    font-size: 2.5em;
+    background: linear-gradient(45deg, #2E7D32, #66BB6A);
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 10px;
+}
+
+.newsletter p {
+    font-size: 1.5em;
+    color: #444;
+    margin-top: 5px; /* Ensures text is right below heading */
+}
+
+/* Right Side: Form (Name + Email + Button) */
+.newsletter .form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 15px;
+}
+
+/* Input Fields */
+.newsletter input {
+    padding: 15px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 1.2em;
+    width: 100%;
+    max-width: 350px;
+}
+
+/* Subscribe Button */
+.newsletter button {
+    padding: 15px 20px;
+    background-color: #2E7D32;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1.2em;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.newsletter button:hover {
+    background-color: #4CAF50;
+}
+
+
+/* Footer Section */
+.footer {
+    background: linear-gradient(45deg, #1B5E20, #4CAF50) !important; /* Darker green for better visibility */
+    padding: 60px 20px;
+    color: white;
+    text-align: center;
+    width: 100%;
+    position: relative; /* Ensure it sits properly */
+    z-index: 10; /* Push above other elements if needed */
+}
+
+/* Ensure footer takes full width */
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Ensure parent containers don't override background */
+footer {
+    background: linear-gradient(45deg, #1B5E20, #4CAF50) !important;
+    padding: 30px 20px; /* Reduced padding for smaller height */
+    color: white;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+    min-height: 150px; /* Reduced height */
+}
+
+.footer-socials a img {
+    width: 30px; /* Decrease the size of the logo */
+    height: 30px; /* Ensure the height is proportional */
+}
+
+.footer-container {
+    background: transparent !important;
+}
+
+
+.footer-links ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.footer-socials a {
+    margin: 0 15px;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.footer-socials a:hover {
+    color: #C8E6C9;
+}
+footer {
+    /* background-color: #333;
+    color: #fff;
+    padding: 25px 15px;
+    width: 100%;
+    margin-top: 30px; */
+    margin-top: 20px;
+    position: static;
+    align-items: s;
+    justify-content: flex-start;
+    background-color: #333;
+    
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+     /* Limit width for larger screens */
+    margin: 0 auto;    /* Center the footer content */
+}
+
+.footer-section {
+    width: 22%; /* Adjust width for better responsiveness */
+    min-width: 160px; /* Set a minimum width */
+    margin-bottom: 18px;
+}
+
+.footer-section h4 {
+    margin-bottom: 8px;
+    /* width: max-content;  Remove this line */
+    white-space: nowrap; /* Prevent heading from wrapping */
+}
+
+.footer-section p,
+.footer-section a {
+    color: #ddd;
+    text-decoration: none;
+    display: block; /* Make links and paragraphs stack nicely */
+    margin-bottom: 5px; /* Add spacing between items */
+}
+
+.footer-section a:hover {
+    color: #ff6f61;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 8px 0;
+    margin-top: 18px;
+    width: 100%; /* Ensure full width */
+}
+

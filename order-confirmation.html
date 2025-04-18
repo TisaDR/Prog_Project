@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Order Confirmation - Farmy</title>
+  <link rel="stylesheet" href="legum.css" />
+  <link rel="stylesheet" href="index.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7f7f7;
+    }
+
+    /* nav {
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    } */
+
+    nav .title {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav .search-cart a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+    }
+
+    main.container {
+      max-width: 700px;
+      background-color: white;
+      margin: 50px auto;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #4CAF50;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      font-size: 16px;
+      color: #444;
+    }
+
+    h3 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .order-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+
+    .order-item img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .order-item span {
+      font-size: 15px;
+      color: #333;
+    }
+
+    strong {
+      color: #222;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-title">Farmy</div>
+
+
+    <div class="flex justify-center items-center flex-col gap-2 mt-6 relative z-20">
+        <div class="flex w-full max-w-xl items-center gap-2">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search all products and offers..."
+            autocomplete="off"
+            class="flex-grow px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+          />
+          <button onclick="startVoiceSearch()" class="px-3 py-2 bg-green-600 text-white rounded-md">🎙️</button>
+          <select
+            id="category-filter"
+            class="px-3 py-2 border border-gray-300 rounded-md bg-white text-sm"
+          >
+            <option value="all">All Categories</option>
+            <option value="featured">Featured</option>
+            <option value="seasonal">Seasonal Offers</option>
+          </select>
+        </div>
+      
+        <!-- Suggestions box appears right below search bar -->
+        <div
+          class="absolute top-full mt-1 left-0 w-full max-w-xl bg-white border border-gray-300 rounded-md shadow-md z-50 hidden"
+          id="suggestions-box"
+        ></div>
+      </div>
+      
+      
+    
+    <ul class="nav-links">
+        <li>Home
+        <a href="index.html"></a>
+    </li>
+        <li>
+            <a href="legumes.html">Shop</a>
+        </li>
+        <li>Farmers
+            <div class="dropdown">
+                <a href="profile.html">Profiles</a>
+                <a href="Assignment/index.html">Blogs & Articlea</a>
+                <a href="Farming/index.html">Goverment_help</a>
+            </div>
+        </li>
+        <li>Account
+            <div class="dropdown">
+                <a href="login_index.html">Login</a>
+                <a href="reg_index.html">Register</a>
+             
+            </div>
+        </li>
+        <li>Cart
+          <div class="dropdown">
+            <a href="Cart.html">Cart</a>
+            <a href="wishlist.html">Wishlist</a>
+          </div>
+        </li>
+        <li>Contact Us
+            <div class="dropdown">
+                <a href="enquiryform.html">Enquiry form</a>
+                <a href="contact_us.html">contact us</a>
+               
+            </div>
+        </li>
+    </ul>
+</nav>
+  <main class="container">
+    <h1>Thank You for Your Order!</h1>
+    <p>Your order has been placed successfully.</p>
+    <div id="order-summary"></div>
+  </main>
+
+  <script>
+    const username = localStorage.getItem("username");
+    const cart = JSON.parse(localStorage.getItem("lastCart")) || [];
+
+    if (!username || cart.length === 0) {
+      window.location.href = "legumes.html";
+    }
+
+    const order = {
+      id: Date.now(),
+      username: username,
+      items: cart,
+      date: new Date().toLocaleString(),
+      total: cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
+    };
+
+    const orders = JSON.parse(localStorage.getItem("orders")) || [];
+    orders.push(order);
+    localStorage.setItem("orders", JSON.stringify(orders));
+    localStorage.removeItem("lastCart");
+
+    const orderSummary = document.getElementById("order-summary");
+    orderSummary.innerHTML = `
+      <h3>Order ID: ${order.id}</h3>
+      <p><strong>Date:</strong> ${order.date}</p>
+      <ul>
+        ${order.items.map(item => `
+          <li class="order-item">
+            <img src="${item.image || 'default.jpg'}" alt="${item.name}" />
+            <span>${item.name} x ${item.quantity} - $${(item.price * item.quantity).toFixed(2)}</span>
+          </li>
+        `).join("")}
+      </ul>
+      <p><strong>Total:</strong> $${order.total.toFixed(2)}</p>
+    `;
+  </script>
+  <footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h4>Contact Us</h4>
+            <p>Email: mywebsite.com</p>
+            <p>Phone: +1 (4322209)</p>
+            <p>Address: 123 Farm Lane, Countryside, USA</p>
+        </div>
+        <div class="footer-section">
+            <h4>About Us</h4>
+            <p><a href="#about">Our Story</a></p>
+            <p><a href="#">Sustainability</a></p>
+            <p><a href="#">Careers</a></p>
+        </div>
+        <div class="footer-section">
+            <h4>Help & Support</h4>
+            <p><a href="#">FAQs</a></p>
+            <p><a href="#">Shipping & Returns</a></p>
+            <p><a href="#">Customer Service</a></p>
+        </div>
+        <div class="footer-section">
+            <h4>Follow Us</h4>
+            <p><a href="#">Facebook</a></p>
+            <p><a href="#">Instagram</a></p>
+            <p><a href="#">Twitter</a></p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 mywebsite. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+
+</html>

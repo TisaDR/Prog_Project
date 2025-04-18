@@ -1,0 +1,336 @@
+/* Universal reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    margin: 0;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: url('rimage.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Navbar */
+.nav-title {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: white;
+    font-family: 'Pacifico', cursive;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav-title:hover {
+    transform: scale(1.05);
+    color: #C8E6C9;
+}
+
+/* Navbar */
+.navbar {
+    background: linear-gradient(45deg, #1B5E20, #4CAF50);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+}
+
+/* Search box */
+.search-box input {
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+    max-width: 300px;
+}
+
+/* Main content area */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh; /* Full height */
+}
+
+/* Registration form */
+.form-container {
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+}
+
+.form-heading {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: #388e3c;
+}
+
+.registration-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.registration-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.registration-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.registration-form button:hover {
+    background-color: #388e3c;
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(45deg, #1B5E20, #4CAF50);
+    padding: 30px 20px;
+    color: white;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+}
+
+/* Footer container */
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/* Footer section */
+.footer-section {
+    width: 22%;
+    min-width: 160px;
+    margin-bottom: 18px;
+}
+
+.footer-section h4 {
+    margin-bottom: 8px;
+    white-space: nowrap;
+}
+
+.footer-section p,
+.footer-section a {
+    color: #ddd;
+    text-decoration: none;
+}
+
+.footer-section a:hover {
+    color: #ff6f61;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 8px 0;
+    margin-top: 18px;
+}
+/* Navbar */
+.navbar {
+    background: linear-gradient(45deg, #1B5E20, #4CAF50);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    flex-wrap: wrap; /* Ensure items wrap properly on smaller screens */
+}
+
+/* Navbar links and dropdown */
+.nav-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping of nav items on smaller screens */
+}
+
+.nav-links li {
+    position: relative;
+    padding: 14px 20px;
+    cursor: pointer;
+    color: white;
+}
+
+.nav-links li:hover .dropdown {
+    display: block;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    background-color: #388e3c;
+    top: 100%;
+    left: 0;
+    min-width: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.dropdown a {
+    color: white;
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+}
+
+.dropdown a:hover {
+    background-color: #4caf50;
+}
+
+/* Adjust dropdown position */
+.nav-links li > .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+}
+
+/* Styling for the "Farmers" and "Account" items */
+.nav-links li:nth-child(2), 
+.nav-links li:nth-child(3) {
+    position: relative; 
+}
+
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .nav-links li {
+        padding: 10px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .search-box input {
+        width: 100%;
+        max-width: 200px; /* Adjust width for mobile view */
+    }
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+}
+
+.login-container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 128, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #2f855a; /* Dark green */
+    font-size: 28px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: #38a169; /* Green focus border */
+    outline: none;
+}
+
+.remeber-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #38a169;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+    background-color: #2f855a;
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+.register-link a {
+    color: #38a169;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fresh Farm Products</title>
+  <link rel="stylesheet" href="legum.css" />
+  <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-title">Farmy</div>
+
+    <!-- Search + Voice + Filter -->
+    <div class="flex justify-center items-center flex-col gap-2 mt-6 relative z-20">
+      <div class="flex w-full max-w-xl items-center gap-2">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search all products and offers..."
+          autocomplete="off"
+          class="flex-grow px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+        />
+        <button onclick="startVoiceSearch()" class="px-3 py-2 bg-green-600 text-white rounded-md">🎙️</button>
+        <select
+          id="product-category-filter"
+          class="px-3 py-2 border border-gray-300 rounded-md bg-white text-sm"
+        >
+          <option value="all">All Categories</option>
+          <option value="Grains">Grains</option>
+          <option value="Pulses">Pulses</option>
+          <option value="Dairy">Dairy</option>
+        </select>
+      </div>
+      <div class="absolute top-full mt-1 left-0 w-full max-w-xl bg-white border border-gray-300 rounded-md shadow-md z-50 hidden" id="suggestions-box"></div>
+    </div>
+
+    <!-- Navigation Links -->
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="legumes.html">Shop</a></li>
+      <li>Farmers
+        <div class="dropdown">
+          <a href="profile.html">Profiles</a>
+         
+          <a href="Assignment/index.html">Blogs & Articles</a>
+          <a href="Farming/index.html">Government Help</a>
+        </div>
+      </li>
+      <li>Account
+        <div class="dropdown">
+          <a href="login_index.html">Login</a>
+          <a href="reg_index.html">Register</a>
+        
+        </div>
+      </li>
+      <li>Cart
+        <div class="dropdown">
+          <a href="Cart.html">Cart</a>
+          <a href="wishlist.html">Wishlist</a>
+        </div>
+      </li>
+      <li>Contact Us
+        <div class="dropdown">
+          <a href="enquiryform.html">Enquiry form</a>
+          <a href="Contact Us.html">Contact Us form</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+  <section class="container">
+    <h1>Our Products</h1>
+    <div id="product-list" class="product-grid"></div>
+  </section>
+
+  <main class="container">
+    <h2>Shopping Cart</h2>
+    <ul id="cart-items" class="cart-items"></ul>
+    <p class="total" id="total-price">Total: $0.00</p>
+    <div class="cart-buttons">
+      <button onclick="window.location.href='Cart.html'">Go to Cart</button>
+      <button id="checkout-btn" class="btn">Go to Checkout</button>
+    </div>
+  </main>
+
+  <script>
+    const products = [
+      { id: 1, name: "Brown Rice", category: "Grains", price: 9.99, description: "Healthy Brown Rice", image: "images/brown_rice.jpeg" },
+      { id: 2, name: "Barley", category: "Grains", price: 3.49, description: "Barley", image: "images/barley.jpeg" },
+      { id: 3, name: "Millet", category: "Grains", price: 7.99, description: "Millet", image: "images/millet.jpeg" },
+      { id: 4, name: "Oats", category: "Grains", price: 9.00, description: "Oats", image: "images/oats.jpg" },
+      { id: 5, name: "White Rice", category: "Grains", price: 8.00, description: "White Rice", image: "images/white rice.jpeg" },
+      { id: 6, name: "Mung Beans", category: "Pulses", price: 10.00, description: "Mung Beans", image: "images/download.jpeg" },
+      { id: 7, name: "Paneer", category: "Dairy", price: 12.00, description: "Fresh Paneer", image: "images/paneer.jpeg" },
+      { id: 8, name: "Milk", category: "Dairy", price: 10.00, description: "Fresh Milk", image: "images/milk.jpeg" },
+      { id: 9, name: "Chickpeas", category: "Pulses", price: 1.00, description: "Chickpeas", image: "images/chickpeas.jpeg" }
+    ];
+
+    const productList = document.getElementById("product-list");
+    const categoryFilter = document.getElementById("product-category-filter");
+
+    categoryFilter.addEventListener("change", (e) => {
+      displayProducts(e.target.value);
+    });
+
+    function displayProducts(filter = "all") {
+      productList.innerHTML = "";
+
+      const filtered = filter === "all"
+        ? products
+        : products.filter(p => p.category === filter);
+
+      filtered.forEach(product => {
+        const item = document.createElement("div");
+        item.className = "product-card";
+        item.innerHTML = `
+          <img src="${product.image}" alt="${product.name}" />
+          <h3>${product.name}</h3>
+          <p>${product.description}</p>
+          <p><strong>$${product.price.toFixed(2)}</strong></p>
+          <div class="flex justify-between items-center">
+            <button onclick="addToCart(${product.id})">Add to Cart</button>
+            <i class="fa-regular fa-heart wishlist-icon" onclick="toggleWishlist(${product.id}, this)"></i>
+          </div>
+        `;
+        productList.appendChild(item);
+      });
+    }
+
+    function addToCart(id) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const product = products.find(p => p.id === id);
+      const existing = cart.find(p => p.id === id);
+
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ ...product, quantity: 1 });
+      }
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+      alert(`${product.name} added to cart.`);
+    }
+
+    function toggleWishlist(productId, iconElement) {
+      let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+      const product = products.find(p => p.id === productId);
+      const index = wishlist.findIndex(p => p.id === productId);
+
+      if (index === -1) {
+        wishlist.push(product);
+        iconElement.classList.remove("fa-heart");
+        iconElement.classList.add("fa-solid", "fa-heart", "text-red-500");
+      } else {
+        wishlist.splice(index, 1);
+        iconElement.classList.remove("fa-solid", "text-red-500");
+        iconElement.classList.add("fa-heart");
+      }
+
+      localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    }
+
+    function renderCart() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const cartItems = document.getElementById("cart-items");
+      const totalPrice = document.getElementById("total-price");
+
+      cartItems.innerHTML = "";
+      let total = 0;
+
+      cart.forEach(item => {
+        const li = document.createElement("li");
+        li.className = "cart-item";
+        li.innerHTML = `
+          <img src="${item.image}" alt="${item.name}" class="cart-img" />
+          <span>${item.name} x ${item.quantity}</span>
+          <span>$${(item.price * item.quantity).toFixed(2)}</span>
+        `;
+        cartItems.appendChild(li);
+        total += item.price * item.quantity;
+      });
+
+      totalPrice.textContent = `Total: $${total.toFixed(2)}`;
+    }
+
+    document.getElementById("checkout-btn").addEventListener("click", function (e) {
+      e.preventDefault();
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const user = JSON.parse(localStorage.getItem("user"));
+
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+
+      if (!user || !user.username) {
+        alert("Please sign in before checking out.");
+        window.location.href = "reg_index.html";
+      } else {
+        window.location.href = "checkout.html";
+      }
+    });
+
+    // Voice Search
+    function startVoiceSearch() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        alert("Your browser doesn't support voice search.");
+        return;
+      }
+      const recognition = new SpeechRecognition();
+      recognition.lang = "en-US";
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+      recognition.start();
+      recognition.onresult = function (event) {
+        const transcript = event.results[0][0].transcript;
+        searchInput.value = transcript;
+        searchInput.dispatchEvent(new Event("input"));
+      };
+      recognition.onerror = function (event) {
+        alert("Voice search error: " + event.error);
+      };
+    }
+
+    const searchInput = document.getElementById("search-input");
+    const suggestionsBox = document.getElementById("suggestions-box");
+    const suggestionList = ["Rice", "Wheat", "Pulses", "Maize", "Lentils"];
+
+    searchInput.addEventListener("input", function () {
+      const query = this.value.toLowerCase();
+      const matches = suggestionList.filter(item => item.toLowerCase().includes(query));
+      if (query) {
+        suggestionsBox.innerHTML = matches.length
+          ? matches.map(match => `<div class="px-4 py-2 hover:bg-gray-100 cursor-pointer">${match}</div>`).join("")
+          : `<div class="px-4 py-2 text-red-600 font-semibold">No products found.</div>`;
+        suggestionsBox.classList.remove("hidden");
+      } else {
+        suggestionsBox.classList.add("hidden");
+      }
+    });
+
+    // Initialize
+    displayProducts();
+    renderCart();
+  </script>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>Contact Us</h4>
+        <p>Email: mywebsite.com</p>
+        <p>Phone: +1 (4322209)</p>
+        <p>Address: 123 Farm Lane, Countryside, USA</p>
+      </div>
+      <div class="footer-section">
+        <h4>About Us</h4>
+        <p><a href="#about">Our Story</a></p>
+        <p><a href="#">Sustainability</a></p>
+        <p><a href="#">Careers</a></p>
+      </div>
+      <div class="footer-section">
+        <h4>Help & Support</h4>
+        <p><a href="#">FAQs</a></p>
+        <p><a href="#">Shipping & Returns</a></p>
+        <p><a href="#">Customer Service</a></p>
+      </div>
+      <div class="footer-section">
+        <h4>Follow Us</h4>
+        <p><a href="#">Facebook</a></p>
+        <p><a href="#">Instagram</a></p>
+        <p><a href="#">Twitter</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 mywebsite. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

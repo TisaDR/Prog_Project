@@ -1,0 +1,291 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+}
+.nav-title {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: white;
+    font-family: 'Pacifico', cursive; /* Apply curvy font */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav-title:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    color: #C8E6C9; /* Change color on hover */
+}
+
+/* Navbar */
+.navbar {
+    background: linear-gradient(45deg, #1B5E20, #4CAF50);
+    height: 80px; /* Increased height */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    position: relative; /* Required for z-index to work */
+    z-index: 1000;  
+}
+
+
+  
+
+.search-box {
+    flex: 1;
+}
+
+.search-box input {
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+    max-width: 300px;
+}
+
+.nav-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-links li {
+    position: relative;
+    padding: 14px 20px;
+    cursor: pointer;
+    color: white;
+}
+
+.nav-links li:hover .dropdown {
+    display: block;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    background-color: #388e3c;
+    top: 100%;
+    left: 0;
+    min-width: 150px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+.dropdown a {
+    color: white;
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+}
+
+.dropdown a:hover {
+    background-color: #4caf50;
+}
+
+
+/* Banner container */
+.banner {
+    position: relative;
+    width: 100%;
+    height: 400px; /* Adjust height as needed */
+    overflow: hidden;
+}
+
+/* Full-width image */
+.banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the area */
+}
+
+/* Floating content box */
+.content-box {
+    position: absolute;
+    top: 50%;
+    right: 50px; /* Distance from right */
+    transform: translateY(-50%);
+    background: white;
+    padding: 20px;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+  
+section {
+    padding: 20px;
+    background: white;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.vlog-container, .news-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.vlog-item, article {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+iframe {
+    width: 100%;
+    height: 200px;
+    border-radius: 8px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#about, #contact {
+    text-align: center;
+    background-color: #e8f5e9;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px;
+}
+
+#contact p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    .vlog-container, .news-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+.footer {
+    background: linear-gradient(45deg, #1B5E20, #4CAF50) !important; /* Darker green for better visibility */
+    padding: 60px 20px;
+    color: white;
+    text-align: center;
+    width: 100%;
+    position: relative; /* Ensure it sits properly */
+    z-index: 10; /* Push above other elements if needed */
+}
+
+/* Ensure footer takes full width */
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Ensure parent containers don't override background */
+footer {
+    background: linear-gradient(45deg, #1B5E20, #4CAF50) !important;
+    padding: 30px 20px; /* Reduced padding for smaller height */
+    color: white;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+    min-height: 150px; /* Reduced height */
+}
+
+.footer-socials a img {
+    width: 30px; /* Decrease the size of the logo */
+    height: 30px; /* Ensure the height is proportional */
+}
+
+.footer-container {
+    background: transparent !important;
+}
+
+
+.footer-links ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.footer-socials a {
+    margin: 0 15px;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.footer-socials a:hover {
+    color: #C8E6C9;
+}
+footer {
+    /* background-color: #333;
+    color: #fff;
+    padding: 25px 15px;
+    width: 100%;
+    margin-top: 30px; */
+    margin-top: 20px;
+    position: static;
+    align-items: s;
+    justify-content: flex-start;
+    background-color: #333;
+    
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+     /* Limit width for larger screens */
+    margin: 0 auto;    /* Center the footer content */
+}
+
+.footer-section {
+    width: 22%; /* Adjust width for better responsiveness */
+    min-width: 160px; /* Set a minimum width */
+    margin-bottom: 18px;
+}
+
+.footer-section h4 {
+    margin-bottom: 8px;
+    /* width: max-content;  Remove this line */
+    white-space: nowrap; /* Prevent heading from wrapping */
+}
+
+.footer-section p,
+.footer-section a {
+    color: #ddd;
+    text-decoration: none;
+    display: block; /* Make links and paragraphs stack nicely */
+    margin-bottom: 5px; /* Add spacing between items */
+}
+
+.footer-section a:hover {
+    color: #ff6f61;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 8px 0;
+    margin-top: 18px;
+    width: 100%; /* Ensure full width */
+}
+

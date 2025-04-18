@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-title">Farmy</div>
+
+
+        <div class="flex justify-center items-center flex-col gap-2 mt-6 relative z-20">
+            <div class="flex w-full max-w-xl items-center gap-2">
+              <input
+                type="text"
+                id="search-input"
+                placeholder="Search all products and offers..."
+                autocomplete="off"
+                class="flex-grow px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+              />
+              <button onclick="startVoiceSearch()" class="px-3 py-2 bg-green-600 text-white rounded-md">🎙️</button>
+              <select
+                id="category-filter"
+                class="px-3 py-2 border border-gray-300 rounded-md bg-white text-sm"
+              >
+                <option value="all">All Categories</option>
+                <option value="featured">Featured</option>
+                <option value="seasonal">Seasonal Offers</option>
+              </select>
+            </div>
+          
+            <!-- Suggestions box appears right below search bar -->
+            <div
+              class="absolute top-full mt-1 left-0 w-full max-w-xl bg-white border border-gray-300 rounded-md shadow-md z-50 hidden"
+              id="suggestions-box"
+            ></div>
+          </div>
+          
+          
+        
+        <ul class="nav-links">
+            <li>Home
+            <a href="index.html"></a>
+        </li>
+            <li>
+                <a href="legumes.html">Shop</a>
+            </li>
+            <li>Farmers
+                <div class="dropdown">
+                    <a href="profile.html">Profiles</a>
+                    <a href="Assignment/index.html">Blogs & Articlea</a>
+                    <a href="Farming/index.html">Goverment_help</a>
+                </div>
+            </li>
+            <li>Account
+                <div class="dropdown">
+                    <a href="login_index.html">Login</a>
+                    <a href="reg_index.html">Register</a>
+                  
+                    <a href="profile/index.html"></a>
+                </div>
+            </li>
+            <li>Cart
+                <div class="dropdown">
+                  <a href="Cart.html">Cart</a>
+                  <a href="wishlist.html">Wishlist</a>
+                </div>
+              </li>
+            <li>Contact Us
+                <div class="dropdown">
+                    <a href="enquiryform.html">Enquiry form</a>
+                    <a href="contact_us.html">Contact us</a>
+                   
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Buy Fresh, Eat Healthy</h1>
+            <p>Fresh produce, straight from the farm to your table. Support local farmers and enjoy organic, high-quality food.</p>
+        </div>
+        <div class="hero-image">
+            <img src="images/farm_fresh.jpeg" alt="Farm Fresh Produce">
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section class="featured-products">
+        <h2>Featured Products</h2>
+        <div class="product-container">
+            <div class="product-card">
+                <img src="images/org_veg.jpeg" alt="Vegetables">
+                <h3>Fresh Organic Vegetables</h3>
+                <p>$15 per basket</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="images/fruits.jpeg" alt="Fruits">
+                <h3>Fresh Fruits</h3>
+                <p>$10 per box</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="images/honey.jpeg" alt="Honey">
+                <h3>Organic Honey</h3>
+                <p>$8 per jar</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+   
+
+    <!-- Testimonials Section -->
+    <!-- Testimonials Section -->
+<section class="testimonials">
+    <h2>What Our Customers Say</h2>
+    <div class="testimonial">
+        <p>"The quality of the fresh vegetables is incredible! I love supporting local farmers."</p>
+        <p><strong>John D.</strong></p>
+    </div>
+    <div class="testimonial">
+        <p>"Great service, fast delivery, and amazing organic products. Highly recommend!"</p>
+        <p><strong>Emma W.</strong></p>
+    </div>
+</section>
+
+    <!-- Seasonal Offers Section -->
+    <section class="seasonal-offers">
+        <h2>Seasonal Offers</h2>
+        <div class="offer-list">
+            <div class="offer">
+                <img src="images/pumpkin.jpeg" alt="Pumpkin">
+                <h3>Fresh Pumpkins</h3>
+                <p>$3.99 per kg</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="offer">
+                <img src="images/strawberry.jpeg" alt="Strawberries">
+                <h3>Organic Strawberries</h3>
+                <p>$4.99 per pack</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subscription Section -->
+<section class="subscription-box">
+    <h2>Get Fresh Produce Delivered to Your Door</h2>
+    <p>Sign up for our weekly subscription box and get a variety of fresh, seasonal produce delivered right to your doorstep.</p>
+    
+    <!-- Subscribe Button -->
+    <button id="subscribe-btn">Subscribe Now</button>
+    
+    <!-- Signup Form (Hidden Initially) -->
+    <div id="signup-form-container" style="display: none;">
+        <form id="signup-form">
+            <input type="email" id="email" placeholder="Enter your email" required>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+
+    <!-- Countdown Timer -->
+    <div id="timer">
+        <p>Next delivery in:</p>
+        <div id="countdown"></div>
+    </div>
+</section>
+
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="text">
+            <h2>Stay Updated</h2>
+            <p>Sign up for our newsletter to receive the latest news, offers, and fresh produce updates directly to your inbox!</p>
+        </div>
+        <form class="form">
+            <input type="text" placeholder="Enter your name" required>
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+    
+
+    <!-- Footer Section -->
+    <footer>
+       
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <p>Email: mywebsite.com</p>
+                    <p>Phone: +1 (4322209)</p>
+                    <p>Address: 123 Farm Lane, Countryside, USA</p>
+                </div>
+                <div class="footer-section">
+                    <h4>About Us</h4>
+                    <p><a href="#about">Our Story</a></p>
+                    <p><a href="#">Sustainability</a></p>
+                    <p><a href="#">Careers</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Help & Support</h4>
+                    <p><a href="#">FAQs</a></p>
+                    <p><a href="#">Shipping & Returns</a></p>
+                    <p><a href="#">Customer Service</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <p><a href="#">Facebook</a></p>
+                    <p><a href="#">Instagram</a></p>
+                    <p><a href="#">Twitter</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 mywebsite. All rights reserved.</p>
+            </div>
+        </footer>
+       
+        <script>
+            const searchInput = document.getElementById("search-input");
+          
+            const suggestionList = ["Rice", "Wheat", "Pulses", "Maize", "Lentils"]; // example
+            const suggestionsBox = document.getElementById("suggestions-box");
+          
+            searchInput.addEventListener("input", function () {
+              const query = this.value.toLowerCase();
+              const matches = suggestionList.filter(item => item.toLowerCase().includes(query));
+          
+              if (query) {
+                if (matches.length > 0) {
+                  suggestionsBox.innerHTML = matches.map(match => `<div class="px-4 py-2 hover:bg-gray-100 cursor-pointer">${match}</div>`).join("");
+                } else {
+                  suggestionsBox.innerHTML = `<div class="px-4 py-2 text-red-600 font-semibold">No products found.</div>`;
+                }
+                suggestionsBox.classList.remove("hidden");
+              } else {
+                suggestionsBox.classList.add("hidden");
+              }
+          
+              handleSearch();
+            });
+          
+            function startVoiceSearch() {
+              const SpeechRecognition =
+                window.SpeechRecognition || window.webkitSpeechRecognition;
+          
+              if (!SpeechRecognition) {
+                alert("Your browser doesn't support voice search.");
+                return;
+              }
+          
+              const recognition = new SpeechRecognition();
+              recognition.lang = "en-US";
+              recognition.interimResults = false;
+              recognition.maxAlternatives = 1;
+          
+              recognition.start();
+          
+              recognition.onresult = function (event) {
+                const transcript = event.results[0][0].transcript;
+                searchInput.value = transcript;
+                searchInput.dispatchEvent(new Event("input")); // trigger the same input event
+              };
+          
+              recognition.onerror = function (event) {
+                console.error("Voice search error:", event.error);
+                alert("Voice search error: " + event.error);
+              };
+            }
+            
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector(".newsletter .form");
+    const nameInput = form.querySelector('input[type="text"]');
+    const emailInput = form.querySelector('input[type="email"]');
+
+    // Create popup container
+    const popup = document.createElement("div");
+    popup.id = "subscriptionPopup";
+    popup.style.position = "fixed";
+    popup.style.top = "20px";
+    popup.style.right = "20px";
+    popup.style.padding = "15px 20px";
+    popup.style.borderRadius = "8px";
+    popup.style.fontSize = "16px";
+    popup.style.fontWeight = "500";
+    popup.style.boxShadow = "0 4px 10px rgba(0, 0, 0, 0.15)";
+    popup.style.display = "none";
+    popup.style.zIndex = "9999";
+    document.body.appendChild(popup);
+
+    function showPopup(message, isError = false) {
+      popup.textContent = message;
+      popup.style.backgroundColor = isError ? "#ffe6e6" : "#e6ffed";
+      popup.style.color = isError ? "#cc0000" : "#2f855a";
+      popup.style.border = `1px solid ${isError ? "#cc0000" : "#2f855a"}`;
+      popup.style.display = "block";
+
+      // Hide after 4 seconds
+      setTimeout(() => {
+        popup.style.display = "none";
+      }, 4000);
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = nameInput.value.trim();
+      const email = emailInput.value.trim();
+
+      if (name === "" || email === "") {
+        showPopup("Please enter both name and email.", true);
+        return;
+      }
+
+      // Save to localStorage
+      let subscribers = JSON.parse(localStorage.getItem("newsletterSubscribers")) || [];
+      subscribers.push({ name, email });
+      localStorage.setItem("newsletterSubscribers", JSON.stringify(subscribers));
+
+      // Clear form and show success
+      form.reset();
+      showPopup("Thanks for subscribing to our newsletter!");
+    });
+  });
+// Countdown Timer Functionality
+function updateCountdown() {
+    const now = new Date().getTime();
+    const nextDelivery = new Date();
+    nextDelivery.setDate(nextDelivery.getDate() + 7); // Set next delivery 7 days from now
+
+    const timeRemaining = nextDelivery - now;
+    if (timeRemaining <= 0) {
+        document.getElementById("countdown").innerHTML = "Next delivery is today!";
+        return;
+    }
+
+    const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+}
+
+// Update countdown every second
+setInterval(updateCountdown, 1000);
+
+// Handle subscribe button click to show the form
+document.getElementById('subscribe-btn').addEventListener('click', function() {
+    document.getElementById('signup-form-container').style.display = 'block';  // Show form
+    document.getElementById('subscribe-btn').style.display = 'none';  // Hide Subscribe button
+});
+
+// Handle form submission
+document.getElementById('signup-form').addEventListener('submit', function(event) {
+    event.preventDefault();  // Prevent form from refreshing the page
+    const email = document.getElementById('email').value;
+
+    if (email) {
+        alert(`Thank you for signing up with ${email}!`);
+        document.getElementById('email').value = '';  // Clear the input
+        document.getElementById('signup-form-container').style.display = 'none';  // Hide form after submit
+        document.getElementById('subscribe-btn').style.display = 'block';  // Show the Subscribe button again
+    }
+});
+
+
+          </script>
+          
+          
+    
+</body>
+</html>
+

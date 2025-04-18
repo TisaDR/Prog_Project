@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer's Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-title">Farmy</div>
+    
+    
+        <div class="flex justify-center items-center flex-col gap-2 mt-6 relative z-20">
+            <div class="flex w-full max-w-xl items-center gap-2">
+              <input
+                type="text"
+                id="search-input"
+                placeholder="Search all products and offers..."
+                autocomplete="off"
+                class="flex-grow px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+              />
+              <button onclick="startVoiceSearch()" class="px-3 py-2 bg-green-600 text-white rounded-md">🎙️</button>
+              <select
+                id="category-filter"
+                class="px-3 py-2 border border-gray-300 rounded-md bg-white text-sm"
+              >
+                <option value="all">All Categories</option>
+                <option value="featured">Featured</option>
+                <option value="seasonal">Seasonal Offers</option>
+              </select>
+            </div>
+          
+            <!-- Suggestions box appears right below search bar -->
+            <div
+              class="absolute top-full mt-1 left-0 w-full max-w-xl bg-white border border-gray-300 rounded-md shadow-md z-50 hidden"
+              id="suggestions-box"
+            ></div>
+          </div>
+          
+          
+        
+        <ul class="nav-links">
+            <li>Home
+            <a href="index.html"></a>
+        </li>
+            <li>
+                <a href="legumes.html">Shop</a>
+            </li>
+            <li>Farmers
+                <div class="dropdown">
+                    <a href="profile.html">Profiles</a>
+                    <a href="Assignment/index.html">Blogs & Articlea</a>
+                    <a href="Farming/index.html">Goverment_help</a>
+                </div>
+            </li>
+            <li>Account
+                <div class="dropdown">
+                    <a href="login_index.html">Login</a>
+                    <a href="reg_index.html">Register</a>
+                 
+                </div>
+            </li>
+            <li>Cart
+                <div class="dropdown">
+                  <a href="Cart.html">Cart</a>
+                  <a href="wishlist.html">Wishlist</a>
+                </div>
+              </li>
+            <li>Contact Us
+                <div class="dropdown">
+                    <a href="enquiryform.html">Enquiry form</a>
+                    <a href="contact_us.html">contact us</a>
+                   
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+        <!-- Farmer 1 Profile -->
+        <div class="profile-card">
+            <img src="images/farmer1.jpeg" alt="Farmer's Photo" class="profile-pic">
+            <h2>Anne Wambuyu</h2>
+            <p><strong>Location:</strong> Green Valley, USA</p>
+            <p><strong>Farm Name:</strong> Green Harvest Farms</p>
+            <p><strong>Type:</strong> Organic Farming</p>
+        </div>
+
+        <!-- Farmer 2 Profile -->
+        <div class="profile-card">
+            <img src="images/farmer2.jpeg" alt="Farmer's Photo" class="profile-pic">
+            <h2>Sharda ama</h2>
+            <p><strong>Location:</strong> Sunny Fields, Canada</p>
+            <p><strong>Farm Name:</strong> Sunny Fields Farm</p>
+            <p><strong>Type:</strong> Mixed Farming</p>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <h3>Contact a Farmer</h3>
+        <form class="contact-form" onsubmit="submitForm(event)">
+            <label for="farmer-dropdown">Choose a Farmer:</label>
+            <select id="farmer-dropdown" name="farmer">
+                <option value="Anne">Anne Wambuyu</option>
+                <option value="Sharda">Sharda ama</option>
+            </select>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="3" required></textarea>
+            <button type="submit">Send Message</button>
+            <p class="formResponse"></p>
+        </form>
+    </section>
+
+    <!-- Review & Rating Section -->
+    <section class="review-section">
+        <h3>Rate & Review a Farmer</h3>
+        <form class="review-form" onsubmit="addReview(event)">
+            <label for="review-farmer-dropdown">Choose a Farmer:</label>
+            <select id="review-farmer-dropdown" name="farmer">
+                <option value="John">Anne Wambuyu</option>
+                <option value="Jane">Sharda ama</option>
+            </select>
+            <textarea class="reviewInput" placeholder="Write a review..." rows="3" required></textarea>
+            <div class="star-rating">
+                <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
+                <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+                <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+                <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+                <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+            </div>
+            <button type="submit">Submit Review</button>
+        </form>
+        <ul class="reviewList"></ul>
+    </section>
+
+    <script>
+        function submitForm(event) {
+            event.preventDefault();
+            const farmerName = document.getElementById('farmer-dropdown').value;
+            event.target.querySelector('.formResponse').textContent = `Thank you! Your message has been sent to ${farmerName}.`;
+        }
+
+        function addReview(event) {
+            event.preventDefault();
+            const reviewInput = event.target.querySelector('.reviewInput');
+            const reviewList = document.querySelector('.reviewList');
+            const farmerName = document.getElementById('review-farmer-dropdown').value;
+            const rating = event.target.querySelector('input[name="rating"]:checked') ? event.target.querySelector('input[name="rating"]:checked').value : "No rating";
+
+            if (reviewInput.value.trim() !== "") {
+                const li = document.createElement("li");
+                li.innerHTML = `<strong>${farmerName} (Rating: ${rating} stars)</strong><br>${reviewInput.value}`;
+                reviewList.appendChild(li);
+                reviewInput.value = "";
+            }
+        }
+    </script>
+</body>
+</html

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shopping Cart - Farmy</title>
+  <link rel="stylesheet" href="legum.css" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+ 
+  <nav class="navbar">
+    <div class="nav-title">Farmy</div>
+
+
+    <div class="flex justify-center items-center flex-col gap-2 mt-6 relative z-20">
+        <div class="flex w-full max-w-xl items-center gap-2">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search all products and offers..."
+            autocomplete="off"
+            class="flex-grow px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+          />
+          <button onclick="startVoiceSearch()" class="px-3 py-2 bg-green-600 text-white rounded-md">🎙️</button>
+          <select
+            id="category-filter"
+            class="px-3 py-2 border border-gray-300 rounded-md bg-white text-sm"
+          >
+            <option value="all">All Categories</option>
+            <option value="featured">Featured</option>
+            <option value="seasonal">Seasonal Offers</option>
+          </select>
+        </div>
+      
+        <!-- Suggestions box appears right below search bar -->
+        <div
+          class="absolute top-full mt-1 left-0 w-full max-w-xl bg-white border border-gray-300 rounded-md shadow-md z-50 hidden"
+          id="suggestions-box"
+        ></div>
+      </div>
+      
+      
+    
+    <ul class="nav-links">
+        <li>Home
+        <a href="index.html"></a>
+    </li>
+        <li>
+            <a href="legumes.html">Shop</a>
+        </li>
+        <li>Farmers
+            <div class="dropdown">
+                <a href="profile.html">Profiles</a>
+                <a href="Assignment/index.html">Blogs & Articlea</a>
+                <a href="Farming/index.html">Goverment_help</a>
+            </div>
+        </li>
+        <li>Account
+            <div class="dropdown">
+                <a href="login_index.html">Login</a>
+                <a href="reg_index.html">Register</a>
+             
+            </div>
+        </li>
+        <li>Cart
+          <div class="dropdown">
+            <a href="Cart.html">Cart</a>
+            <a href="wishlist.html">Wishlist</a>
+          </div>
+        </li>
+        <li>Contact Us
+            <div class="dropdown">
+                <a href="enquiryform.html">Enquiry form</a>
+                <a href="contact_us.html">contact us</a>
+               
+            </div>
+        </li>
+    </ul>
+</nav>
+    <div class="search-cart">
+      <a href="legumes.html">Back to Products</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <h1>Your Shopping Cart</h1>
+    <div class="cart-section">
+      <ul id="cart-items"></ul>
+      <p class="total" id="total-price">Total: $0.00</p>
+      <button onclick="checkout()">Checkout</button>
+    </div>
+  </main>
+
+  <script>
+    const cartItems = document.getElementById("cart-items");
+    const totalPriceEl = document.getElementById("total-price");
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function renderCart() {
+      cartItems.innerHTML = "";
+      let total = 0;
+
+      if (cart.length === 0) {
+        cartItems.innerHTML = "<li>Your cart is empty.</li>";
+        totalPriceEl.textContent = "Total: $0.00";
+        return;
+      }
+
+      cart.forEach((item, index) => {
+        const li = document.createElement("li");
+        const subtotal = item.price * item.quantity;
+        total += subtotal;
+
+        li.innerHTML = `
+          <div class="cart-item">
+            <img src="${item.image}" alt="${item.name}" class="cart-image" />
+            <div class="cart-details">
+              <span class="cart-name">${item.name}</span>
+              <div class="quantity-controls">
+                <button onclick="changeQuantity(${index}, -1)">-</button>
+                <span>${item.quantity}</span>
+                <button onclick="changeQuantity(${index}, 1)">+</button>
+              </div>
+              <span class="cart-price">$${subtotal.toFixed(2)}</span>
+              <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+            </div>
+          </div>
+        `;
+        cartItems.appendChild(li);
+      });
+
+      totalPriceEl.textContent = `Total: $${total.toFixed(2)}`;
+    }
+
+    function changeQuantity(index, delta) {
+      cart[index].quantity += delta;
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+      }
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    function checkout() {
+      if (cart.length === 0) {
+        alert("Your cart is empty.");
+        return;
+      }
+      window.location.href = "checkout.html";
+    }
+
+    renderCart();
+  </script>
+  <footer>
+       
+    <div class="footer-container">
+        <div class="footer-section">
+            <h4>Contact Us</h4>
+            <p>Email: mywebsite.com</p>
+            <p>Phone: +1 (4322209)</p>
+            <p>Address: 123 Farm Lane, Countryside, USA</p>
+        </div>
+        <div class="footer-section">
+            <h4>About Us</h4>
+            <p><a href="#about">Our Story</a></p>
+            <p><a href="#">Sustainability</a></p>
+            <p><a href="#">Careers</a></p>
+        </div>
+        <div class="footer-section">
+            <h4>Help & Support</h4>
+            <p><a href="#">FAQs</a></p>
+            <p><a href="#">Shipping & Returns</a></p>
+            <p><a href="#">Customer Service</a></p>
+        </div>
+        <div class="footer-section">
+            <h4>Follow Us</h4>
+            <p><a href="#">Facebook</a></p>
+            <p><a href="#">Instagram</a></p>
+            <p><a href="#">Twitter</a></p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 mywebsite. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

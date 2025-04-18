@@ -1,0 +1,177 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    color: black;
+}
+
+.nav-title {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: white;
+    font-family: 'Pacifico', cursive; /* Apply curvy font */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav-title:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    color: #C8E6C9; /* Change color on hover */
+}
+
+/* Navbar */
+.navbar {
+    background: linear-gradient(45deg, #1B5E20, #4CAF50);
+    height: 80px; /* Increased height */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+}
+/* Default styles (for larger screens, like desktops) */
+body {
+    font-size: 16px;
+    background-color: #f0f0f0;
+  }
+  
+  /* For tablets or smaller screens (max-width: 768px) */
+  @media (max-width: 768px) {
+    body {
+      font-size: 14px;
+      background-color: #e0e0e0;
+    }
+  }
+  
+  /* For mobile screens (max-width: 480px) */
+  @media (max-width: 480px) {
+    body {
+      font-size: 12px;
+      background-color: #d0d0d0;
+    }
+  }
+  
+
+.search-box {
+    flex: 1;
+}
+
+.search-box input {
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+    max-width: 300px;
+}
+
+.nav-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-links li {
+    position: relative;
+    padding: 14px 20px;
+    cursor: pointer;
+    color: white;
+}
+
+.nav-links li:hover .dropdown {
+    display: block;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    background-color: #388e3c;
+    top: 100%;
+    left: 0;
+    min-width: 150px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+.dropdown a {
+    color: white;
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+}
+
+.dropdown a:hover {
+    background-color: #4caf50;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.profile-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+}
+
+.profile-pic {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 3px solid #3c8c4f;
+}
+
+.contact-section, .review-section {
+    margin: 40px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form input, .contact-form textarea, .contact-form select, .review-form select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contact-form button, .review-form button {
+    background-color: #3c8c4f;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.star-rating {
+    display: flex;
+    direction: row-reverse;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    font-size: 1.5rem;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.star-rating input:checked ~ label,
+.star-rating input:checked ~ label ~ label {
+    color: #ffcc00;
+}
